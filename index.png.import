@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/index.png-06b258ccf265f304d7596437c11840d3.stex"
+path="res://.import/index.png-4a959fa93b62a8d7c15bfbf87a9fd2cc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://output/index.png"
-dest_files=[ "res://.import/index.png-06b258ccf265f304d7596437c11840d3.stex" ]
+source_file="res://output/temp/davaponte.github.io/index.png"
+dest_files=[ "res://.import/index.png-4a959fa93b62a8d7c15bfbf87a9fd2cc.stex" ]
 
 [params]
 
