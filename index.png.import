@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/index.png-4a959fa93b62a8d7c15bfbf87a9fd2cc.stex"
+path="res://.import/index.png-06b258ccf265f304d7596437c11840d3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://output/temp/davaponte.github.io/index.png"
-dest_files=[ "res://.import/index.png-4a959fa93b62a8d7c15bfbf87a9fd2cc.stex" ]
+source_file="res://output/index.png"
+dest_files=[ "res://.import/index.png-06b258ccf265f304d7596437c11840d3.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
