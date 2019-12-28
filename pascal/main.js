@@ -3,7 +3,7 @@ const env = {'memory': memory};
 const importObject = {env};
 
 
-fetch('../out/main.wasm').then(response =>
+fetch('./main.wasm').then(response =>
   response.arrayBuffer()
 ).then(bytes => WebAssembly.instantiate(bytes, importObject)).then(results => {
   instance = results.instance;
