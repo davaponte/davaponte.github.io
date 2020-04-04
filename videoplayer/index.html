@@ -1,268 +1,160 @@
 <!DOCTYPE html>
-<html xmlns='http://www.w3.org/1999/xhtml' lang='' xml:lang=''>
+<html lang="en">
+
 <head>
-	<meta charset='utf-8' />
-	<meta name='viewport' content='width=device-width, user-scalable=no' />
-	<link id='-gd-engine-icon' rel='icon' type='image/png' href='favicon.png' />
-	<title></title>
-	<style type='text/css'>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="stylesheet" href="app.css">
 
-		body {
-			touch-action: none;
-			margin: 0;
-			border: 0 none;
-			padding: 0;
-			text-align: center;
-			background-color: black;
-		}
+  <script>
+    function ChangeLogo01() {
+      document.getElementById("subtitle").src = "./users/0001/subtitles/logo01.jpg";
+    }
 
-		#canvas {
-			display: block;
-			margin: 0;
-			color: white;
-		}
+    function ChangeLogo02() {
+      document.getElementById("subtitle").src = "./users/0001/subtitles/logo02.jpg";
+    }
 
-		#canvas:focus {
-			outline: none;
-		}
+    function ChangeLogo03() {
+      document.getElementById("subtitle").src = "./users/0001/subtitles/logo03.jpg";
+    }
 
-		.godot {
-			font-family: 'Noto Sans', 'Droid Sans', Arial, sans-serif;
-			color: #e0e0e0;
-			background-color: #3b3943;
-			background-image: linear-gradient(to bottom, #403e48, #35333c);
-			border: 1px solid #45434e;
-			box-shadow: 0 0 1px 1px #2f2d35;
-		}
+    function SelectVideoMP4() {
+      document.getElementById("video").src = "./users/0001/videos/Another One Bites the Dust.mp4";
+      document.getElementById("video").type = "video/mp4";
+    }
 
+    function SelectVideoOGV() {
+      document.getElementById("video").src = "./users/0001/videos/Help.ogv";
+      document.getElementById("video").type = "video/ogg";
+    }
 
-		/* Status display
-		 * ============== */
+    function SelectVideoWEBM() {
+      document.getElementById("video").src = "./users/0001/videos/Yellow Submarine.webm";
+      document.getElementById("video").type = "video/webm";
+    }
 
-		#status {
-			position: absolute;
-			left: 0;
-			top: 0;
-			right: 0;
-			bottom: 0;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			/* don't consume click events - make children visible explicitly */
-			visibility: hidden;
-		}
-
-		#status-progress {
-			width: 366px;
-			height: 7px;
-			background-color: #38363A;
-			border: 1px solid #444246;
-			padding: 1px;
-			box-shadow: 0 0 2px 1px #1B1C22;
-			border-radius: 2px;
-			visibility: visible;
-		}
-
-		@media only screen and (orientation:portrait) {
-			#status-progress {
-				width: 61.8%;
-			}
-		}
-
-		#status-progress-inner {
-			height: 100%;
-			width: 0;
-			box-sizing: border-box;
-			transition: width 0.5s linear;
-			background-color: #202020;
-			border: 1px solid #222223;
-			box-shadow: 0 0 1px 1px #27282E;
-			border-radius: 3px;
-		}
-
-		#status-indeterminate {
-			visibility: visible;
-			position: relative;
-		}
-
-		#status-indeterminate > div {
-			width: 4.5px;
-			height: 0;
-			border-style: solid;
-			border-width: 9px 3px 0 3px;
-			border-color: #2b2b2b transparent transparent transparent;
-			transform-origin: center 21px;
-			position: absolute;
-		}
-
-		#status-indeterminate > div:nth-child(1) { transform: rotate( 22.5deg); }
-		#status-indeterminate > div:nth-child(2) { transform: rotate( 67.5deg); }
-		#status-indeterminate > div:nth-child(3) { transform: rotate(112.5deg); }
-		#status-indeterminate > div:nth-child(4) { transform: rotate(157.5deg); }
-		#status-indeterminate > div:nth-child(5) { transform: rotate(202.5deg); }
-		#status-indeterminate > div:nth-child(6) { transform: rotate(247.5deg); }
-		#status-indeterminate > div:nth-child(7) { transform: rotate(292.5deg); }
-		#status-indeterminate > div:nth-child(8) { transform: rotate(337.5deg); }
-
-		#status-notice {
-			margin: 0 100px;
-			line-height: 1.3;
-			visibility: visible;
-			padding: 4px 6px;
-			visibility: visible;
-		}
-	</style>
+  </script>
 
 </head>
+
 <body>
-	<canvas id='canvas'>
-		HTML5 canvas appears to be unsupported in the current browser.<br />
-		Please try updating or use a different browser.
-	</canvas>
-	<div id='status'>
-		<div id='status-progress' style='display: none;' oncontextmenu='event.preventDefault();'><div id ='status-progress-inner'></div></div>
-		<div id='status-indeterminate' style='display: none;' oncontextmenu='event.preventDefault();'>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-		</div>
-		<div id='status-notice' class='godot' style='display: none;'></div>
-	</div>
+  <div id="app">
 
-	<script type='text/javascript' src='index.js'></script>
-	<script type='text/javascript'>//<![CDATA[
+    <h1>SoftNI Subtitler Suite web interface</h1>
 
-		var engine = new Engine;
-		var setStatusMode;
-		var setStatusNotice;
+    <div class="ScriptTop">
+      <div class="rt-container">
+        <button class="button" onclick="ChangeLogo01()">Logo01</button>
+        <button class="button" onclick="ChangeLogo02()">Logo02</button>
+        <button class="button" onclick="ChangeLogo03()">Logo02</button>
+      </div>
 
-		(function() {
+      <br />
 
-			const EXECUTABLE_NAME = 'index';
-			const MAIN_PACK = 'index.pck';
-			const INDETERMINATE_STATUS_STEP_MS = 100;
+      <div class="rt-container">
+        <button class="button" onclick="SelectVideoMP4()">Video MP4</button>
+        <button class="button" onclick="SelectVideoOGV()">Video OGV</button>
+        <button class="button" onclick="SelectVideoWEBM()">Video WEBM</button>
+      </div>
+    </div>
 
-			var canvas = document.getElementById('canvas');
-			var statusProgress = document.getElementById('status-progress');
-			var statusProgressInner = document.getElementById('status-progress-inner');
-			var statusIndeterminate = document.getElementById('status-indeterminate');
-			var statusNotice = document.getElementById('status-notice');
+    <div class="video-wrapper">
+      <video class="video" id="video" width="640" controls autoplay loop muted>
+        <source src="./users/0001/videos/Help.ogv" type="video/ogg">
+      </video>
+      <div class="video-subtitle">
+        <img class="img-responsive" id="subtitle" width="180" height="40" src="./logo.jpg" alt="SoftNI Subtitler Suite" scale="0">
+      </div>
+    </div>
 
-			var initializing = true;
-			var statusMode = 'hidden';
+    <p id="timerinfo"></p>
+    <script>
+      // Set the date we're counting down to
+      //var countDownDate = new Date("Jan 5, 2021 15:37:25").getTime();
+      
+      var x = setInterval(function() {
+      
+        var vid = document.getElementById("video");
 
-			var animationCallbacks = [];
-			function animate(time) {
-				animationCallbacks.forEach(callback => callback(time));
-				requestAnimationFrame(animate);
-			}
-			requestAnimationFrame(animate);
+        // Revisar este link para propiedades
+        //  https://www.w3schools.com/jsref/dom_obj_video.asp
 
-			function adjustCanvasDimensions() {
-				var scale = window.devicePixelRatio || 1;
-				var width = window.innerWidth;
-				var height = window.innerHeight;
-				canvas.width = width * scale;
-				canvas.height = height * scale;
-				canvas.style.width = width + "px";
-				canvas.style.height = height + "px";
-			}
-			animationCallbacks.push(adjustCanvasDimensions);
-			adjustCanvasDimensions();
+        //Calculo del tiempo transcurrido y su muestra en pantalla
+        var elapsedTime = vid.currentTime   //Tiempo transcurrido en segundos, con parte decimal
+        var hours = Math.floor(elapsedTime / 3600);
+        var lh = ""
+        if (hours <10) {
+          lh = "0"
+        }
+        elapsedTime = elapsedTime - hours * 3600
+        var minutes = Math.floor(elapsedTime / 60);
+        var lm = ""
+        if (minutes <10) {
+          lm = "0"
+        }
+        elapsedTime = elapsedTime - minutes * 60
+        var seconds = Math.floor(elapsedTime);
+        var ls = ""
+        if (seconds <10) {
+          ls = "0"
+        }
+        elapsedTime = elapsedTime - seconds
+        var msec = Math.floor(elapsedTime * 1000);
+        var lmsec = ""
+        if (msec < 100) {
+          lmsec = "0"
+        }
+        if (msec < 10) {
+          lmsec = "00"
+        }
+        
+        var elapsedString = vid.currentSrc + "<br>" + 
+          "Elapsed time: " + lh + hours + ":" + lm + minutes + ":" + ls + seconds + "." + lmsec + msec + "<br>"
+          
+        //Calculo de la duración y su muestra en pantalla
+        var totalTime = vid.duration   //Tiempo en segundos, con parte decimal
+        var hours = Math.floor(totalTime / 3600);
+        var lh = ""
+        if (hours <10) {
+          lh = "0"
+        }
+        totalTime = totalTime - hours * 3600
+        var minutes = Math.floor(totalTime / 60);
+        var lm = ""
+        if (minutes <10) {
+          lm = "0"
+        }
+        totalTime = totalTime - minutes * 60
+        var seconds = Math.floor(totalTime);
+        var ls = ""
+        if (seconds <10) {
+          ls = "0"
+        }
+        totalTime = totalTime - seconds
+        var msec = Math.floor(totalTime * 1000);
+        var lmsec = ""
+        if (msec < 100) {
+          lmsec = "0"
+        }
+        if (msec < 10) {
+          lmsec = "00"
+        }
 
-			setStatusMode = function setStatusMode(mode) {
+        document.getElementById("timerinfo").innerHTML = elapsedString + 
+          "Total time: " + lh + hours + ":" + lm + minutes + ":" + ls + seconds + "." + lmsec + msec + "<br>"
 
-				if (statusMode === mode || !initializing)
-					return;
-				[statusProgress, statusIndeterminate, statusNotice].forEach(elem => {
-					elem.style.display = 'none';
-				});
-				animationCallbacks = animationCallbacks.filter(function(value) {
-					return (value != animateStatusIndeterminate);
-				});
-				switch (mode) {
-					case 'progress':
-						statusProgress.style.display = 'block';
-						break;
-					case 'indeterminate':
-						statusIndeterminate.style.display = 'block';
-						animationCallbacks.push(animateStatusIndeterminate);
-						break;
-					case 'notice':
-						statusNotice.style.display = 'block';
-						break;
-					case 'hidden':
-						break;
-					default:
-						throw new Error('Invalid status mode');
-				}
-				statusMode = mode;
-			}
+        // If the count down is over, write some text 
+        if (vid.ended) {
+          //clearInterval(x);
+          document.getElementById("timerinfo").innerHTML = "VIDEO ENDED";
+        }
+      }, 33); //Ejecuta esta función cada 33 ms
+      </script>    
 
-			function animateStatusIndeterminate(ms) {
+  </div>
 
-				var i = Math.floor(ms / INDETERMINATE_STATUS_STEP_MS % 8);
-				if (statusIndeterminate.children[i].style.borderTopColor == '') {
-					Array.prototype.slice.call(statusIndeterminate.children).forEach(child => {
-						child.style.borderTopColor = '';
-					});
-					statusIndeterminate.children[i].style.borderTopColor = '#dfdfdf';
-				}
-			}
-
-			setStatusNotice = function setStatusNotice(text) {
-
-				while (statusNotice.lastChild) {
-					statusNotice.removeChild(statusNotice.lastChild);
-				}
-				var lines = text.split('\n');
-				lines.forEach((line) => {
-					statusNotice.appendChild(document.createTextNode(line));
-					statusNotice.appendChild(document.createElement('br'));
-				});
-			};
-
-			engine.setProgressFunc((current, total) => {
-
-				if (total > 0) {
-					statusProgressInner.style.width = current/total * 100 + '%';
-					setStatusMode('progress');
-					if (current === total) {
-						// wait for progress bar animation
-						setTimeout(() => {
-							setStatusMode('indeterminate');
-						}, 500);
-					}
-				} else {
-					setStatusMode('indeterminate');
-				}
-			});
-
-			function displayFailureNotice(err) {
-				var msg = err.message || err;
-				console.error(msg);
-				setStatusNotice(msg);
-				setStatusMode('notice');
-				initializing = false;
-			};
-
-			if (!Engine.isWebGLAvailable()) {
-				displayFailureNotice('WebGL not available');
-			} else {
-				setStatusMode('indeterminate');
-				engine.setCanvas(canvas);
-				engine.startGame(EXECUTABLE_NAME, MAIN_PACK).then(() => {
-					setStatusMode('hidden');
-					initializing = false;
-				}, displayFailureNotice);
-			}
-		})();
-	//]]></script>
 </body>
-</html>
 
+</html>
