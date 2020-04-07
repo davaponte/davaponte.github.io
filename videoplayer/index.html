@@ -7,9 +7,11 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <!-- Add icon library -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
   <link rel="stylesheet" href="app.css">
 
   <script type="text/javascript" src="functions.js"></script>
+  <script type="text/javascript" src="files.js"></script>
 </head>
 
 <body>
@@ -20,21 +22,23 @@
         <button class="button" onclick="ChangeLogo01()">Logo01</button>
         <button class="button" onclick="ChangeLogo02()">Logo02</button>
         <button class="button" onclick="ChangeLogo03()">Logo02</button>
+        <button class="button" onclick="NextSub()">Next</button>
       </div>
       <br />
       <div class="rt-container">
         <button class="button" onclick="SelectVideoMP4()">Video MP4</button>
         <button class="button" onclick="SelectVideoOGV()">Video OGV</button>
         <button class="button" onclick="SelectVideoWEBM()">Video WEBM</button>
+        <button class="button" onclick="SelectVideoCosmos()">COSMOS</button>
       </div>
     </div>
 
     <div class="video-wrapper">
       <video class="video" id="video" width="640" controls autoplay loop muted>
-        <source src="./users/0001/videos/Help.ogv" type="video/ogg">
+        <source src="./users/0001/videos/Cosmos.mp4" type="video/mp4">
       </video>
       <div class="video-subtitle">
-        <img class="img-responsive" id="subtitle" width="180" height="40" src="./logo.jpg" alt="SoftNI Subtitler Suite" scale="0">
+        <img class="img-responsive" id="subtitle" width="600" height="80" src="./logo.png" alt="SoftNI Subtitler Suite" scale="0">
       </div>
     </div>
 
@@ -55,6 +59,7 @@
       <button class="button-controls" onclick="SetPlaybackSpeed(1.5)"><i class="fa fa fa-fast-forward">1.5x</i></button>
       <button class="button-controls" onclick="SetPlaybackSpeed(2)"><i class="fa fa fa-fast-forward">2x</i></button>
       <button class="button-controls" onclick="ToggleMute()"><i class="fa fa-volume-off"></i>/<i class="fa fa-volume-up"></i></button>
+      <button class="button-controls" onclick="ReadFiles()">Read</button>
 
     </div>
 

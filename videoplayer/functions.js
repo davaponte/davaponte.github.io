@@ -10,6 +10,10 @@ function ChangeLogo03() {
   document.getElementById("subtitle").src = "./users/0001/subtitles/logo03.jpg";
 }
 
+function NextSub() {
+  document.getElementById("subtitle").src = "./users/0001/subtitles/" + dict["00070.567-00074.533"];
+}
+
 function SelectVideoMP4() {
   document.getElementById("video").src = "./users/0001/videos/Another One Bites the Dust.mp4";
   document.getElementById("video").type = "video/mp4";
@@ -25,6 +29,10 @@ function SelectVideoWEBM() {
   document.getElementById("video").type = "video/webm";
 }
 
+function SelectVideoCosmos() {
+  document.getElementById("video").src = "./users/0001/videos/Cosmos.mp4";
+  document.getElementById("video").type = "video/mp4";
+}
 //Player functions
 function ToggleMute() {
   document.getElementById("video").muted = !document.getElementById("video").muted;
@@ -106,3 +114,41 @@ var x = setInterval(function() {
     document.getElementById("timerinfo").innerHTML = "VIDEO ENDED";
   }
 }, frameRate); //Ejecuta esta función cada 33 ms
+
+
+var y = setInterval(function() {
+  var vid = document.getElementById("video");
+
+  if (vid.play)
+
+  var ActualTime = vid.currentTime;
+
+  for(var key in dict) {
+    var value = dict[key];
+    var StartTime = key.substr(0, 9);
+    var StopTime = key.substr(10, 9);
+
+    // console.log('ActualTime: ' + ActualTime);
+    // console.log('StartTime: ' + StartTime);
+    // console.log('StopTime: ' + StopTime);
+
+    if ((ActualTime >= StartTime) && (ActualTime <= StopTime)) {
+      TogglePlayVideo();
+      document.getElementById("subtitle").src = "./users/0001/subtitles/" + value;
+      TogglePlayVideo();
+      return;
+    }
+    document.getElementById("subtitle").src = "";
+  }
+}, 250); //Esto es lo que lee y pone los subs
+
+//
+// function ReadFiles() {
+//   var fs = require('fs');
+//   var files = fs.readdirSync('/users/0001/subtitles/');
+//
+//   for(i=0;i<files.length;i++){
+//     console.log(files[i]);
+//   }
+//
+// }
