@@ -5,54 +5,23 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <!-- Add icon library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="app.css">
 
-  <script>
-    function ChangeLogo01() {
-      document.getElementById("subtitle").src = "./users/0001/subtitles/logo01.jpg";
-    }
-
-    function ChangeLogo02() {
-      document.getElementById("subtitle").src = "./users/0001/subtitles/logo02.jpg";
-    }
-
-    function ChangeLogo03() {
-      document.getElementById("subtitle").src = "./users/0001/subtitles/logo03.jpg";
-    }
-
-    function SelectVideoMP4() {
-      document.getElementById("video").src = "./users/0001/videos/Another One Bites the Dust.mp4";
-      document.getElementById("video").type = "video/mp4";
-    }
-
-    function SelectVideoOGV() {
-      document.getElementById("video").src = "./users/0001/videos/Help.ogv";
-      document.getElementById("video").type = "video/ogg";
-    }
-
-    function SelectVideoWEBM() {
-      document.getElementById("video").src = "./users/0001/videos/Yellow Submarine.webm";
-      document.getElementById("video").type = "video/webm";
-    }
-
-  </script>
-
+  <script type="text/javascript" src="functions.js"></script>
 </head>
 
 <body>
   <div id="app">
-
     <h1>SoftNI Subtitler Suite web interface</h1>
-
     <div class="ScriptTop">
       <div class="rt-container">
         <button class="button" onclick="ChangeLogo01()">Logo01</button>
         <button class="button" onclick="ChangeLogo02()">Logo02</button>
         <button class="button" onclick="ChangeLogo03()">Logo02</button>
       </div>
-
       <br />
-
       <div class="rt-container">
         <button class="button" onclick="SelectVideoMP4()">Video MP4</button>
         <button class="button" onclick="SelectVideoOGV()">Video OGV</button>
@@ -69,89 +38,28 @@
       </div>
     </div>
 
+    <div>
+      <p></p>
+      <button class="button-controls" onclick="Skip_x_msec(-10)">-10s<i class="fa fa-backward"></i></button>
+      <button class="button-controls" onclick="Skip_x_msec(-5)">-5s<i class="fa fa-backward"></i></button>
+      <button class="button-controls" onclick="Skip_x_msec(-1)">-1s<i class="fa fa-backward"></i></button>
+      <button class="button-controls" onclick="TogglePlayVideo()"><i class="fa fa-play"></i>/<i class="fa fa-pause"></i></button>
+      <button class="button-controls" onclick="Skip_x_msec(1)"><i class="fa fa-forward">1s</i></button>
+      <button class="button-controls" onclick="Skip_x_msec(5)"><i class="fa fa-forward">5s</i></button>
+      <button class="button-controls" onclick="Skip_x_msec(10)"><i class="fa fa-forward">10s</i></button>
+
+      <p></p>
+      <button class="button-controls" onclick="SetPlaybackSpeed(0.5)"><i class="fa fa fa-fast-backward">0.5x</i></button>
+      <button class="button-controls" onclick="SetPlaybackSpeed(1)"><i class="fa fa fa-play">1x</i></button>
+      <button class="button-controls" onclick="SetPlaybackSpeed(1.25)"><i class="fa fa fa-fast-forward">1.25x</i></button>
+      <button class="button-controls" onclick="SetPlaybackSpeed(1.5)"><i class="fa fa fa-fast-forward">1.5x</i></button>
+      <button class="button-controls" onclick="SetPlaybackSpeed(2)"><i class="fa fa fa-fast-forward">2x</i></button>
+      <button class="button-controls" onclick="ToggleMute()"><i class="fa fa-volume-off"></i>/<i class="fa fa-volume-up"></i></button>
+
+    </div>
+
+    <p></p>
     <p id="timerinfo"></p>
-    <script>
-      // Set the date we're counting down to
-      //var countDownDate = new Date("Jan 5, 2021 15:37:25").getTime();
-      
-      var x = setInterval(function() {
-      
-        var vid = document.getElementById("video");
-
-        // Revisar este link para propiedades
-        //  https://www.w3schools.com/jsref/dom_obj_video.asp
-
-        //Calculo del tiempo transcurrido y su muestra en pantalla
-        var elapsedTime = vid.currentTime   //Tiempo transcurrido en segundos, con parte decimal
-        var hours = Math.floor(elapsedTime / 3600);
-        var lh = ""
-        if (hours <10) {
-          lh = "0"
-        }
-        elapsedTime = elapsedTime - hours * 3600
-        var minutes = Math.floor(elapsedTime / 60);
-        var lm = ""
-        if (minutes <10) {
-          lm = "0"
-        }
-        elapsedTime = elapsedTime - minutes * 60
-        var seconds = Math.floor(elapsedTime);
-        var ls = ""
-        if (seconds <10) {
-          ls = "0"
-        }
-        elapsedTime = elapsedTime - seconds
-        var msec = Math.floor(elapsedTime * 1000);
-        var lmsec = ""
-        if (msec < 100) {
-          lmsec = "0"
-        }
-        if (msec < 10) {
-          lmsec = "00"
-        }
-        
-        var elapsedString = vid.currentSrc + "<br>" + 
-          "Elapsed time: " + lh + hours + ":" + lm + minutes + ":" + ls + seconds + "." + lmsec + msec + "<br>"
-          
-        //Calculo de la duración y su muestra en pantalla
-        var totalTime = vid.duration   //Tiempo en segundos, con parte decimal
-        var hours = Math.floor(totalTime / 3600);
-        var lh = ""
-        if (hours <10) {
-          lh = "0"
-        }
-        totalTime = totalTime - hours * 3600
-        var minutes = Math.floor(totalTime / 60);
-        var lm = ""
-        if (minutes <10) {
-          lm = "0"
-        }
-        totalTime = totalTime - minutes * 60
-        var seconds = Math.floor(totalTime);
-        var ls = ""
-        if (seconds <10) {
-          ls = "0"
-        }
-        totalTime = totalTime - seconds
-        var msec = Math.floor(totalTime * 1000);
-        var lmsec = ""
-        if (msec < 100) {
-          lmsec = "0"
-        }
-        if (msec < 10) {
-          lmsec = "00"
-        }
-
-        document.getElementById("timerinfo").innerHTML = elapsedString + 
-          "Total time: " + lh + hours + ":" + lm + minutes + ":" + ls + seconds + "." + lmsec + msec + "<br>"
-
-        // If the count down is over, write some text 
-        if (vid.ended) {
-          //clearInterval(x);
-          document.getElementById("timerinfo").innerHTML = "VIDEO ENDED";
-        }
-      }, 33); //Ejecuta esta función cada 33 ms
-      </script>    
 
   </div>
 
