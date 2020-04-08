@@ -116,6 +116,25 @@ var x = setInterval(function() {
 }, frameRate); //Ejecuta esta función cada 33 ms
 
 
+function ShowSubtitles(event) {
+  var ActualTime = event.currentTime;
+
+  // console.log(subtitles[0]);
+  // console.log(ActualTime);
+  var Item = subtitles.filter(function(data) {
+    return ((ActualTime >= data.start) && (ActualTime <= data.stop));
+  });
+
+  if (Item.length > 0) {
+    document.getElementById("subtitle").src = "./users/0001/subtitles/" + Item[0].img;
+    console.log(Item[0].img);
+  } else {
+    document.getElementById("subtitle").src = "";
+    console.log('NOT FOUND');
+  }
+};
+
+/*
 var y = setInterval(function() {
   var vid = document.getElementById("video");
 
@@ -141,7 +160,7 @@ var y = setInterval(function() {
     document.getElementById("subtitle").src = "";
   }
 }, 250); //Esto es lo que lee y pone los subs
-
+*/
 //
 // function ReadFiles() {
 //   var fs = require('fs');

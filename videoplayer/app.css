@@ -24,9 +24,9 @@
 
 .video-subtitle {
     position: absolute;
-    top: 72%;
+    top: 70%;
     right: -5%;
-    bottom: 5%;
+    bottom: 10%;
     left: -5%;
     opacity: 75%;
     display: -webkit-box;
