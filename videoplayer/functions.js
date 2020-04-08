@@ -127,10 +127,12 @@ function ShowSubtitles(event) {
 
   if (Item.length > 0) {
     document.getElementById("subtitle").src = "./users/0001/subtitles/" + Item[0].img;
-    console.log(Item[0].img);
+    document.getElementById("subtitle").alt = "";
+    // console.log(Item[0].img);
   } else {
     document.getElementById("subtitle").src = "";
-    console.log('NOT FOUND');
+    document.getElementById("subtitle").alt = "SoftNI Subtitler Suite";
+    // console.log('NOT FOUND');
   }
 };
 
