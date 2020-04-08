@@ -89,87 +89,98 @@ function SecondsToHHMMSSMS(value) {
   return lh + hours + ":" + lm + minutes + ":" + ls + seconds + "." + lmsec + msec
 }
 
-const frameRate = 33;
+// //Ya no vamos a usar un setInterval para mostrar la info sino el evento ontimeupdate del video
+// const frameRate = 33;
+//
+// var x = setInterval(function() {
+//
+//   var vid = document.getElementById("video");
+//
+//   // Revisar este link para propiedades
+//   //  https://www.w3schools.com/jsref/dom_obj_video.asp
+//
+//   //Calculo del tiempo transcurrido y su muestra en pantalla junto a la duración
+//   var timeInfoString = vid.currentSrc + "<br>" +
+//     "Elapsed time: " + SecondsToHHMMSSMS(vid.currentTime) + "<br>" +
+//     "Total time: " + SecondsToHHMMSSMS(vid.duration);
+//
+//   var speedInfoString = "Speed: " + vid.playbackRate;
+//
+//   document.getElementById("timerinfo").innerHTML = timeInfoString + "<br>" +
+//     speedInfoString;
+//
+//   // If the count down is over, write some text
+//   if (vid.ended) {
+//     //clearInterval(x);
+//     document.getElementById("timerinfo").innerHTML = "VIDEO ENDED";
+//   }
+// }, frameRate); //Ejecuta esta función cada 33 ms
 
-var x = setInterval(function() {
-
-  var vid = document.getElementById("video");
-
+function ReportInfo(event) {
   // Revisar este link para propiedades
   //  https://www.w3schools.com/jsref/dom_obj_video.asp
 
-  //Calculo del tiempo transcurrido y su muestra en pantalla junto a la duración
-  var timeInfoString = vid.currentSrc + "<br>" +
-    "Elapsed time: " + SecondsToHHMMSSMS(vid.currentTime) + "<br>" +
-    "Total time: " + SecondsToHHMMSSMS(vid.duration);
+  var filepath = event.currentSrc;
 
-  var speedInfoString = "Speed: " + vid.playbackRate;
+  // Use the regular expression to replace the non-matching content with a blank space
+  var filenameWithExtension = filepath.replace(/^.*[\\\/]/, '');
+
+  //Calculo del tiempo transcurrido y su muestra en pantalla junto a la duración
+  var timeInfoString = "Now playing: " + filenameWithExtension + "<br>" +
+    "Elapsed time: " + SecondsToHHMMSSMS(event.currentTime) + "<br>" +
+    "Total time: " + SecondsToHHMMSSMS(event.duration);
+
+  var speedInfoString = "Speed: " + event.playbackRate;
 
   document.getElementById("timerinfo").innerHTML = timeInfoString + "<br>" +
     speedInfoString;
 
   // If the count down is over, write some text
-  if (vid.ended) {
-    //clearInterval(x);
+  if (event.ended) {//No debería pasar nunca pues el video está en loop
     document.getElementById("timerinfo").innerHTML = "VIDEO ENDED";
   }
-}, frameRate); //Ejecuta esta función cada 33 ms
+}
 
+// function FILTERShowSubtitles(event) { //Esta versión es más lenta por lo que no se usará
+//   var ActualTime = event.currentTime;
+//
+//   // console.log(subtitles[0]);
+//   // console.log(ActualTime);
+//   var Item = subtitles.filter(function(data) {
+//     return ((ActualTime >= data.start) && (ActualTime <= data.stop));
+//   });
+//
+//   if (Item.length > 0) {
+//     document.getElementById("subtitle").src = "./users/0001/subtitles/" + Item[0].img;
+//     document.getElementById("subtitle").alt = "";
+//     // console.log(Item[0].img);
+//   } else {
+//     document.getElementById("subtitle").src = "";
+//     document.getElementById("subtitle").alt = "SoftNI Subtitler Suite";
+//     // console.log('NOT FOUND');
+//   }
+// };
 
 function ShowSubtitles(event) {
   var ActualTime = event.currentTime;
 
-  // console.log(subtitles[0]);
-  // console.log(ActualTime);
-  var Item = subtitles.filter(function(data) {
-    return ((ActualTime >= data.start) && (ActualTime <= data.stop));
-  });
-
-  if (Item.length > 0) {
-    document.getElementById("subtitle").src = "./users/0001/subtitles/" + Item[0].img;
-    document.getElementById("subtitle").alt = "";
-    // console.log(Item[0].img);
-  } else {
-    document.getElementById("subtitle").src = "";
-    document.getElementById("subtitle").alt = "SoftNI Subtitler Suite";
-    // console.log('NOT FOUND');
-  }
-};
-
-/*
-var y = setInterval(function() {
-  var vid = document.getElementById("video");
-
-  if (vid.play)
-
-  var ActualTime = vid.currentTime;
-
-  for(var key in dict) {
-    var value = dict[key];
-    var StartTime = key.substr(0, 9);
-    var StopTime = key.substr(10, 9);
-
-    // console.log('ActualTime: ' + ActualTime);
-    // console.log('StartTime: ' + StartTime);
-    // console.log('StopTime: ' + StopTime);
+  for(var key in subtitles) {
+    var value = subtitles[key];
+    var StartTime = subtitles[key].start;
+    var StopTime = subtitles[key].stop;
+    var Found = false;
 
     if ((ActualTime >= StartTime) && (ActualTime <= StopTime)) {
-      TogglePlayVideo();
-      document.getElementById("subtitle").src = "./users/0001/subtitles/" + value;
-      TogglePlayVideo();
-      return;
+      document.getElementById("subtitle").src = "./users/0001/subtitles/" + value.img;
+      document.getElementById("subtitle").alt = "";
+      Found = true;
+      break;
     }
-    document.getElementById("subtitle").src = "";
   }
-}, 250); //Esto es lo que lee y pone los subs
-*/
-//
-// function ReadFiles() {
-//   var fs = require('fs');
-//   var files = fs.readdirSync('/users/0001/subtitles/');
-//
-//   for(i=0;i<files.length;i++){
-//     console.log(files[i]);
-//   }
-//
-// }
+  if (!Found) {
+    document.getElementById("subtitle").src = "";
+    document.getElementById("subtitle").alt = "SoftNI Subtitler Suite";
+  }
+  ReportInfo(event); //Invoca reporte de avance en tiempo
+
+};
