@@ -123,10 +123,12 @@ function ReportInfo(event) {
   var filepath = event.currentSrc;
 
   // Use the regular expression to replace the non-matching content with a blank space
-  var filenameWithExtension = filepath.replace(/^.*[\\\/]/, '');
+  var filenameWithExtension = filepath.replace(/^.*[\\\/]/, '').bold().big();
 
   //Calculo del tiempo transcurrido y su muestra en pantalla junto a la duración
-  var timeInfoString = "Now playing: " + filenameWithExtension + "<br>" +
+  //var timeInfoString = "Now playing: " + decodeURI(filenameWithExtension) + "<br>" +
+  // decodeURI() solo funciona con %20, por eso cambié a unescape()
+  var timeInfoString = "Now playing: " + unescape(filenameWithExtension) + "<br>" +
     "Elapsed time: " + SecondsToHHMMSSMS(event.currentTime) + "<br>" +
     "Total time: " + SecondsToHHMMSSMS(event.duration);
 
@@ -161,6 +163,14 @@ function ReportInfo(event) {
 //   }
 // };
 
+function PrintArray(TheArray) {
+  var Result = '[ ';
+  for(var line in TheArray) {
+    Result = Result + TheArray[line] + ', ';
+  }
+  return Result.slice(0, -2) + ' ]';
+}
+
 function ShowSubtitles(event) {
   var ActualTime = event.currentTime;
 
@@ -171,16 +181,20 @@ function ShowSubtitles(event) {
     var Found = false;
 
     if ((ActualTime >= StartTime) && (ActualTime <= StopTime)) {
-      document.getElementById("subtitle").src = "./users/0001/subtitles/" + value.img;
+      document.getElementById("subtitle").src = "./users/0001/subtitles/Cosmos/" + value.img;
       document.getElementById("subtitle").alt = "";
       Found = true;
       break;
     }
   }
-  if (!Found) {
-    document.getElementById("subtitle").src = "";
-    document.getElementById("subtitle").alt = "SoftNI Subtitler Suite";
-  }
   ReportInfo(event); //Invoca reporte de avance en tiempo
-
+  if (!Found) {
+    //Lo siguiente pone una imagen PNG transparente de 1x1px cuando no hay subs
+    //pues Chrome se queja si el elemento src está vacío
+    document.getElementById("subtitle").src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgYAAAAAMAASsJTYQAAAAASUVORK5CYII=";
+    document.getElementById("subtitle").alt = "SoftNI Subtitler Suite";
+  } else {
+    document.getElementById("timerinfo").innerHTML = document.getElementById("timerinfo").innerHTML + '<br>' +
+      'Subtitle texts: ' + PrintArray(value.texts).fontcolor("green");
+  }
 };

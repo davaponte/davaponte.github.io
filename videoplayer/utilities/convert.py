@@ -45,6 +45,7 @@ from itertools import groupby
 # "chunk" our input file, delimited by blank lines
 
 filename = 'Cosmos.Possible.Worlds.S01E01.Ladder.to.the.Stars.480p.x264.srt'
+#~ filename = 'The Beatles - Don\'t let me down.srt';
 with open(filename) as f:
     res = [list(g) for b,g in groupby(f, lambda x: bool(x.strip())) if b]
 
@@ -70,8 +71,9 @@ for k in subs:
 	StopTC = TCtoSeconds(k.end)
 	imagen = StartTC + '-' + StopTC + '.png'
 	#~ print(k.number, k.start, k.end, k. content, imagen)
-	#~ GenerateImage(k.content, 'images/' + imagen)
-	js = js + '  {start: ' + str(float(StartTC)) + ', stop: ' + str(float(StopTC)) + ', img: "' + imagen + '"},\n' 
+	GenerateImage(k.content, 'images/' + imagen)
+	js = js + '  {start: ' + str(float(StartTC)) + ', stop: ' + str(float(StopTC)) + ', img: "' + imagen + \
+		'", texts: ' + str(k.content) + '},\n' 
  
 js = js[:-2] + '\n];'
 print(js)
