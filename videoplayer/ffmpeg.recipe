@@ -1,0 +1,11 @@
+
+Crear forma de onda para un video dado:
+
+ffmpeg -i Don\'t\ Let\ Me\ Down.mp4  -lavfi  "compand,aformat=channel_layouts=mono,showwavespic=s=10000x200:colors=blue" -frames:v 1  waveform.png 
+
+
+
+Crear video de forma de onda para un video dado:
+
+ffmpeg -i Don\'t\ Let\ Me\ Down.mp4  -lavfi  "[0:a]showwaves=s=1280x720:mode=line,format=yuv420p[v]" -map "[v]" -map 0:a -c:v libx264 -c:a copy  waveform.mp4
+

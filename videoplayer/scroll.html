@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <style>
+
+  .top-container {
+    display: flex;
+  }
+
+  .scrolling-wrapper {
+    flex: 61.8%;
+  }
+
+  .sub-scrolling-wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding: 5px;
+  }
+
+  .img-waveform {
+    display: inline-block;
+  }
+
+  .video-box {
+    flex: 38%;
+    padding: 5px;
+
+  }
+
+  </style>
+</head>
+<body>
+
+<div class="top-container">
+
+  <div class="scrolling-wrapper">
+    <div class="sub-scrolling-wrapper" >
+      <img class="img-waveform" id="waveform" src="waveform.png" height="75" alt="Wave Form" scale="0"  style="width:100%">
+    </div>
+  </div>
+
+  <video class="video-box" id="video" controls loop autoplay muted style="width:100%">
+    <source src="users/0001/videos/Cosmos.mp4" type="video/mp4">
+  </video>
+</div>
+
+</body>
+</html>
