@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Compiler Value="/home/data/Programs/pas2js-linux-1.4.8/bin/pas2js" Date="1561400362"/>
+  <Params Value=" -Tbrowser -Pecmascript5 -MObjFPC -Sc -O1 -l -vewnhibq -Fi/home/data/Programs/pas2js-linux-1.4.8/demo/chartjs/js -Fu/home/data/Programs/pas2js-linux-1.4.8/packages/chartjs -Fu/home/data/Programs/pas2js-linux-1.4.8/demo/chartjs/ -FE/home/data/Programs/pas2js-linux-1.4.8/demo/chartjs/js/ -o/home/data/Programs/pas2js-linux-1.4.8/demo/chartjs/js/demointeractions.js -Jeutf-8 -Jirtl.js -Jc -Jminclude demointeractions.lpr"/>
+</CONFIG>
