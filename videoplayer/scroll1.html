@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <style>
+
+  .top-container:after {
+      content: "";
+      clear: both;
+      display: table;
+  }
+
+  .scrolling-wrapper {
+    float: left;
+    width: 68%;
+    padding: 5px;
+  }
+
+  .sub-scrolling-wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+  }
+
+  img-waveform {
+    display: inline-block;
+  }
+
+  .video-box {
+    float: right;
+    width: 30%;
+    padding: 5px;
+  }
+
+  </style>
+
+  <script type="text/javascript">
+    function DoSomething(event) {
+      var elmnt = document.getElementById("sub-scrolling-wrapper");
+      if (event.duration > 0) {
+        elmnt.scrollLeft = event.currentTime * elmnt.scrollWidth / event.duration;
+      }
+    }
+  </script>
+
+
+</head>
+<body>
+
+<div class="top-container">
+
+  <div class="scrolling-wrapper">
+    <div class="sub-scrolling-wrapper" id="sub-scrolling-wrapper">
+      <img class="img-waveform" src="users/0001/videos/Cosmos.png" height="75" alt="Wave Form" scale="0" style="width:2000%">
+    </div>
+  </div>
+
+  <div class="video-box" >
+    <video class="video" id="video" controls loop autoplay muted style="width:100%" ontimeupdate="DoSomething(this)">
+      <source src="users/0001/videos/Cosmos.mp4" type="video/mp4">
+    </video>
+  </div>
+</div>
+
+</body>
+</html>

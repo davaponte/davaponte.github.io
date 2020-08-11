@@ -1,0 +1,33 @@
+const VideoFile = 'users/0001/videos/Don\'t Let Me Down.mp4';
+
+var subtitles = [
+  {start: 0.5, stop: 3.0, img: "00000.500-00003.000.png", texts: ['The Beatles', "Don't let me down"]},
+  {start: 5.103, stop: 7.802, img: "00005.103-00007.802.png", texts: ["Don't let me down"]},
+  {start: 10.906, stop: 14.005, img: "00010.906-00014.005.png", texts: ["Don't let me down"]},
+  {start: 16.817, stop: 19.816, img: "00016.817-00019.816.png", texts: ["Don't let me down"]},
+  {start: 22.708, stop: 25.807, img: "00022.708-00025.807.png", texts: ["Don't let me down"]},
+  {start: 27.503, stop: 32.402, img: "00027.503-00032.402.png", texts: ['Nobody ever loved me like she does']},
+  {start: 33.416, stop: 37.915, img: "00033.416-00037.915.png", texts: ['Oh she does yeah she does']},
+  {start: 40.199, stop: 46.098, img: "00040.199-00046.098.png", texts: ['And if somebody loved', 'me like she do me']},
+  {start: 46.214, stop: 51.113, img: "00046.214-00051.113.png", texts: ['Oh she do me yes she does']},
+  {start: 54.107, stop: 56.806, img: "00054.107-00056.806.png", texts: ["Don't let me down"]},
+  {start: 60.002, stop: 63.001, img: "00060.002-00063.001.png", texts: ["Don't let me down"]},
+  {start: 65.901, stop: 68.8, img: "00065.901-00068.800.png", texts: ["Don't let me down"]},
+  {start: 71.604, stop: 74.503, img: "00071.604-00074.503.png", texts: ["Don't let me down"]},
+  {start: 76.913, stop: 80.812, img: "00076.913-00080.812.png", texts: ['I am in love for the first time']},
+  {start: 82.902, stop: 86.501, img: "00082.902-00086.501.png", texts: ["Don't you know It is gona last"]},
+  {start: 88.905, stop: 91.904, img: "00088.905-00091.904.png", texts: ['It is a love that lasts forever']},
+  {start: 94.812, stop: 98.711, img: "00094.812-00098.711.png", texts: ['It is a love that had no past']},
+  {start: 101.409, stop: 104.308, img: "00101.409-00104.308.png", texts: ["Don't let me down"]},
+  {start: 107.21, stop: 110.109, img: "00107.210-00110.109.png", texts: ["Don't let me down"]},
+  {start: 113.005, stop: 116.504, img: "00113.005-00116.504.png", texts: ["Don't let me down"]},
+  {start: 118.718, stop: 121.717, img: "00118.718-00121.717.png", texts: ["Don't let me down"]},
+  {start: 123.603, stop: 128.202, img: "00123.603-00128.202.png", texts: ['And from the first time that', 'she really done me']},
+  {start: 129.4, stop: 133.899, img: "00129.400-00133.899.png", texts: ['Oh she done me she done me good']},
+  {start: 136.303, stop: 141.002, img: "00136.303-00141.002.png", texts: ['I guess nobody ever really done me']},
+  {start: 142.1, stop: 146.499, img: "00142.100-00146.499.png", texts: ['Oh she done me she done me good']},
+  {start: 150.009, stop: 152.808, img: "00150.009-00152.808.png", texts: ["Don't let me down"]},
+  {start: 155.802, stop: 158.801, img: "00155.802-00158.801.png", texts: ["Don't let me down"]},
+  {start: 161.507, stop: 164.506, img: "00161.507-00164.506.png", texts: ["Don't let me down"]},
+  {start: 167.416, stop: 171.015, img: "00167.416-00171.015.png", texts: ["Don't let me down"]}
+];

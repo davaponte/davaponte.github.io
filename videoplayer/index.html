@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <!-- Font Adwesome 4 -->
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+
+  <!-- Google -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  <!-- Font Adwesome 5 -->
+  <script src="https://kit.fontawesome.com/92a8c9ca37.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="app.css">
+
+  <script type="text/javascript" src="functions.js"></script>
+  <script type="text/javascript" src="data.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <h1>SoftNI Subtitler Suite web interface</h1>
+    <!-- <div class="ScriptTop"> -->
+      <!-- <div class="rt-container">
+        <button class="button" onclick="ChangeLogo01()">Logo01</button>
+        <button class="button" onclick="ChangeLogo02()">Logo02</button>
+        <button class="button" onclick="ChangeLogo03()">Logo02</button>
+        <button class="button" onclick="NextSub()">Next</button>
+      </div>
+
+      <br /> -->
+
+      <!-- <div class="rt-container">
+        <button class="button" onclick="SelectVideoMP4()">Video MP4</button>
+        <button class="button" onclick="SelectVideoOGV()">Video OGV</button>
+        <button class="button" onclick="SelectVideoWEBM()">Video WEBM</button>
+        <button class="button" onclick="SelectVideoCosmos()">COSMOS</button>
+      </div> -->
+    <!-- </div> -->
+
+    <div class="video-wrapper">
+      <video class="video" id="video" width="640" height="480" ontimeupdate="ShowSubtitles(this)" controls loop autoplay muted>
+        <source src="" type="video/mp4">
+      </video>
+      <div class="video-subtitle">
+        <img class="img-responsive" id="subtitle" width="600" height="80" src="logo.png" alt="SoftNI Subtitler Suite" scale="0">
+      </div>
+    </div>
+
+    <script>
+      document.getElementById("video").src = VideoFile; //Se le asigna el video indicado en data.js
+      // document.getElementById("video").src = "users/0001/videos/Another One Bites the Dust.mp4";
+      // document.getElementById("video").src = "users/0001/videos/Help.ogv";
+    </script>
+
+    <div>
+      <p></p>
+      <button class="button-controls" onclick="Skip_x_msec(-10)">-10s<i class="fa fa-backward"></i></button>
+      <button class="button-controls" onclick="Skip_x_msec(-5)">-5s<i class="fa fa-backward"></i></button>
+      <button class="button-controls" onclick="Skip_x_msec(-1)">-1s<i class="fa fa-backward"></i></button>
+      <button class="button-controls" onclick="TogglePlayVideo()"><i class="fa fa-play"></i>/<i class="fa fa-pause"></i></button>
+      <button class="button-controls" onclick="Skip_x_msec(1)"><i class="fa fa-forward">1s</i></button>
+      <button class="button-controls" onclick="Skip_x_msec(5)"><i class="fa fa-forward">5s</i></button>
+      <button class="button-controls" onclick="Skip_x_msec(10)"><i class="fa fa-forward">10s</i></button>
+
+      <p></p>
+      <button class="button-controls" onclick="SetPlaybackSpeed(0.5)"><i class="fa fa fa-play">0.5x</i></button>
+      <button class="button-controls" onclick="SetPlaybackSpeed(1)"><i class="fa fa fa-play">1x</i></button>
+      <button class="button-controls" onclick="SetPlaybackSpeed(1.25)"><i class="fa fa fa-play">1.25x</i></button>
+      <button class="button-controls" onclick="SetPlaybackSpeed(1.5)"><i class="fa fa fa-play">1.5x</i></button>
+      <button class="button-controls" onclick="SetPlaybackSpeed(2)"><i class="fa fa fa-play">2x</i></button>
+      <button class="button-controls" onclick="ToggleMute()"><i class="fas fa-volume-mute"></i>/<i class="fa fa-volume-up"></i></button>
+
+    </div>
+
+    <p></p>
+    <p id="timerinfo"></p>
+
+  </div>
+
+</body>
+
+
+</html>
