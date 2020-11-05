@@ -1,0 +1,144 @@
+<!DOCTYPE html><html><head><title>Space Invaders</title><meta http-equiv="content-type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui=1"><meta charset="UTF-8"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="description" content=""><link rel="manifest" href="manifest.json"><link rel="icon" type="image/png" href="icon64.png"><link rel="apple-touch-icon" sizes="180x180" href="icon180.png"><link rel="icon" type="image/png" sizes="32x32" href="icon32.png"><link rel="icon" type="image/png" sizes="16x16" href="icon16.png"><style>html,body {
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  overflow:hidden;
+  font-family: Verdana;
+}
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+#canvaswrapper {
+  text-align: center ;
+}
+</style><style>@font-face { font-family: "BitCell" ; src: url("fonts/BitCell.ttf") format("truetype"); }</style><script>window.fonts = ["BitCell"]</script></head><body class="noselect custom-cursor" oncontextmenu="return false;"><div id="canvaswrapper"></div><script type="text/javascript">var resources = {"images":[{"file":"bullet.png","version":1,"properties":{"frames":1,"fps":5}},{"file":"icon.png","version":34,"properties":{"frames":1,"fps":5}},{"file":"laser.png","version":14,"properties":{"frames":1,"fps":5}},{"file":"shield.png","version":15,"properties":{"frames":1,"fps":5}}],"assets":[],"maps":{}};
+var graphics = "M1";
+
+</script><script type="text/javascript">var orientation = 'any' ;
+var aspect = 'free' ;
+window.skip_service_worker = true;
+window.exported_project = true;
+</script><script src="microengine.js"></script></body><script id="code" type="text/x-microscript">
+
+Bullets = class
+  constructor = function(x, y)
+    this.x = x
+    this.y = y
+  end
+
+  hp = 10
+  velocity = 2
+
+  move = function()
+    y += velocity
+  end
+
+  hit = function(damage)
+    hp -= damage
+  end
+end
+
+
+
+init = function()
+  level_colors = ["rgb(0,0,92)", 
+    "rgb(92,0,92)", 
+    "rgb(32,0,0)", 
+    "rgb(0,64,32)", 
+    "rgb(0,0,0)"]
+  level = 0
+  score = 0
+  border = 5
+  x = 0
+  y = -screen.height / 2 + border + sprites["laser"].height
+  bullets = []
+
+  shields = []
+  local shield = new Shields(-150, -50)
+  shields.push(shield)
+  local shield = new Shields(-50, -50)
+  shields.push(shield)
+  local shield = new Shields(50, -50)
+  shields.push(shield)
+  local shield = new Shields(150, -50)
+  shields.push(shield)
+
+  starttime = system.time()
+end
+
+update = function()
+  if keyboard.LEFT then 
+    x = x - 2
+    x = max(x, -screen.width / 2 + sprites["laser"].width + border)
+  end
+  if keyboard.RIGHT then 
+    x = x + 2 
+    x = min(x, screen.width / 2 - sprites["laser"].width - border)
+  end
+  
+  if keyboard.SPACE then
+    stoptime = system.time()
+    if (stoptime - starttime >= 250) then
+      starttime = system.time()
+      local bullet = new Bullets(x, y)
+      bullets.push(bullet)
+      audio.beep("loop 1 sine duration 50 volume 100 C6 duration 50 volume 100 G7 end")
+    end
+  end
+end
+
+draw = function()
+  screen.fillRect(0,0,screen.width,screen.height,"rgb(192, 192, 192)")
+  screen.fillRoundRect(0, 0,screen.width-border,screen.height-border,5,level_colors[level])
+  
+  screen.drawText(score,90,86,20,"#FFF")
+
+  for s in shields
+    screen.drawSprite(s.name, s.x, s.y, 40)
+  end
+  
+  screen.drawSprite("laser", x, y, 20)
+  
+  for b in bullets
+    b.move()
+    screen.drawSprite("bullet", b.x, b.y, 2)
+  end
+
+  d = bullets.length
+  while d > 0
+    if bullets[d - 1].y > screen.height / 2 - border then
+      bullets.removeAt(d - 1)
+    else
+      for s in shields
+        if abs(bullets[d - 1].y - s.y) < 4 and abs(bullets[d - 1].x - s.x) < 20 then
+          bullets.removeAt(d - 1)
+        end
+      end
+    end
+    d -= 1
+  end
+
+end
+
+Shields = class
+  constructor = function(x, y, name="shield")
+    this.x = x
+    this.y = y
+    this.name = name
+  end
+
+  hp = 10
+
+  hit = function(damage)
+    hp -= damage
+  end
+end
+
+
+
+</script></html>
