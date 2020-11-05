@@ -1,0 +1,106 @@
+<!DOCTYPE html><html><head><title>Running Man</title><meta http-equiv="content-type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui=1"><meta charset="UTF-8"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="description" content=""><link rel="manifest" href="manifest.json"><link rel="icon" type="image/png" href="icon64.png"><link rel="apple-touch-icon" sizes="180x180" href="icon180.png"><link rel="icon" type="image/png" sizes="32x32" href="icon32.png"><link rel="icon" type="image/png" sizes="16x16" href="icon16.png"><style>html,body {
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  overflow:hidden;
+  font-family: Verdana;
+}
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+#canvaswrapper {
+  text-align: center ;
+}
+</style><style>@font-face { font-family: "BitCell" ; src: url("fonts/BitCell.ttf") format("truetype"); }</style><script>window.fonts = ["BitCell"]</script></head><body class="noselect custom-cursor" oncontextmenu="return false;"><div id="canvaswrapper"></div><script type="text/javascript">var resources = {"images":[{"file":"blade.png","version":21,"properties":{"frames":1,"fps":5}},{"file":"hero.png","version":144,"properties":{"frames":8,"fps":15}},{"file":"icon.png","version":46,"properties":{"frames":1,"fps":5}},{"file":"wall.png","version":2,"properties":{"frames":1,"fps":5}}],"assets":[],"maps":{}};
+var graphics = "M1";
+
+</script><script type="text/javascript">var orientation = 'any' ;
+var aspect = 'free' ;
+window.skip_service_worker = true;
+window.exported_project = true;
+</script><script src="microengine.js"></script></body><script id="code" type="text/x-microscript">
+
+init = function()
+  gameover = 0
+  running = 0
+  blades = [200,300,400]
+  passed = [0,0,0]
+  score = 0
+  position = 0
+  speed = 2
+end
+
+update = function()
+  if gameover>0 then
+    gameover = gameover+1
+    if gameover>300 then init() end
+  elsif running then
+    position = position+speed
+    speed = speed + 0.001
+
+    if (touch.touching or keyboard.UP) and hero_y == 0 then
+       hero_vy = 7
+       audio.beep("square tempo 20000 volume 10 span 100 C4 to C6")
+    end
+
+    hero_vy -= 0.3
+    hero_y = max(0,hero_y+hero_vy)
+
+    for i=0 to blades.length-1
+      if blades[i]<position-120 then
+        blades[i] = position+280+random.next()*200
+        passed[i] = 0
+      end
+      if abs(position-blades[i])<10 then
+        if hero_y<10 then
+          running = 0
+          gameover = 1
+          audio.beep("saw tempo 10000 volume 50 span 50 C2 to C4 to C2 to C4")
+        elsif not passed[i] then
+          passed[i] = 1
+          score += 1
+          audio.beep("saw tempo 960 volume 50 span 20 C6")
+        end
+      end
+    end
+  else
+    if (touch.touching or keyboard.ENTER) then running = 1 end
+  end
+end
+
+draw = function()
+  screen.fillRect(0,0,screen.width,screen.height,"rgb(0,0,92)")
+
+  for i=-6 to 6 by 1
+    screen.drawSprite("wall",i*40-position%40,-80,40)
+  end
+
+  screen.drawSprite("hero",-80,-50+hero_y,20)
+  for i=0 to blades.length-1
+    screen.drawSprite("blade",blades[i]-position-80,-50,20)
+  end
+
+  screen.drawText(score,160,80,25,"#FFF")
+  if gameover then
+    screen.fillRect(0,0,screen.width,screen.height,"rgba(255,0,0,.5)")
+    screen.drawText("GAME OVER",0,0,60,"#FFF")
+  elsif not running then
+    screen.drawText(" READY?",0,40,50,"#FFF")
+    screen.drawText("START: Touch screen or press ENTER",0,0,10,"#FFF")
+    screen.drawText("JUMP: Touch screen or press UP",0,-15,10,"#FFF")
+  end
+end
+
+
+
+
+
+
+
+
+</script></html>
