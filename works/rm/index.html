@@ -86,7 +86,7 @@ draw = function()
     screen.drawSprite("estalagmita",blades[i]-position-80,-50,20)
   end
 
-  screen.drawText(score,100,80,25,"#FFF")
+  screen.drawText(score,80,80,25,"#FFF")
   if gameover then
     screen.fillRect(0,0,screen.width,screen.height,"rgba(255,0,0,.5)")
     screen.drawText("GAME OVER",0,0,40,"#FFF")
@@ -95,6 +95,10 @@ draw = function()
     screen.drawText("START: Touch screen or press ENTER",0,0,10,"#FFF")
     screen.drawText("JUMP: Touch screen or press UP",0,-15,10,"#FFF")
   end
+  St = "Running Man. A very simple game proudly brougth to you by Dr. Aponte"
+  screen.drawText(St, 0, -95, 5,"#000")
+  screen.drawText(St, -1, -94, 5,"#FFF")
+
 end
 
 
