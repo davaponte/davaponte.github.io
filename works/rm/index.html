@@ -16,10 +16,10 @@
 #canvaswrapper {
   text-align: center ;
 }
-</style><style>@font-face { font-family: "BitCell" ; src: url("fonts/BitCell.ttf") format("truetype"); }</style><script>window.fonts = ["BitCell"]</script></head><body class="noselect custom-cursor" oncontextmenu="return false;"><div id="canvaswrapper"></div><script type="text/javascript">var resources = {"images":[{"file":"blade.png","version":21,"properties":{"frames":1,"fps":5}},{"file":"hero.png","version":144,"properties":{"frames":8,"fps":15}},{"file":"icon.png","version":46,"properties":{"frames":1,"fps":5}},{"file":"wall.png","version":2,"properties":{"frames":1,"fps":5}}],"assets":[],"maps":{}};
+</style><style>@font-face { font-family: "BitCell" ; src: url("fonts/BitCell.ttf") format("truetype"); }</style><script>window.fonts = ["BitCell"]</script></head><body class="noselect custom-cursor" oncontextmenu="return false;"><div id="canvaswrapper"></div><script type="text/javascript">var resources = {"images":[{"file":"blade.png","version":26,"properties":{"frames":1,"fps":5}},{"file":"cavern.png","version":2,"properties":{"frames":1,"fps":5}},{"file":"estalagmita.png","version":1,"properties":{"frames":1,"fps":5}},{"file":"hero.png","version":144,"properties":{"frames":8,"fps":15}},{"file":"icon.png","version":46,"properties":{"frames":1,"fps":5}},{"file":"sprite.png","version":93,"properties":{"frames":1,"fps":5}},{"file":"sprite10.png","version":1,"properties":{"frames":1,"fps":5}},{"file":"sprite11.png","version":1,"properties":{"frames":1,"fps":5}},{"file":"sprite2.png","version":1,"properties":{"frames":1,"fps":5}},{"file":"sprite3.png","version":1,"properties":{"frames":1,"fps":5}},{"file":"sprite4.png","version":1,"properties":{"frames":1,"fps":5}},{"file":"sprite5.png","version":1,"properties":{"frames":1,"fps":5}},{"file":"sprite6.png","version":1,"properties":{"frames":1,"fps":5}},{"file":"sprite7.png","version":1,"properties":{"frames":1,"fps":5}},{"file":"sprite8.png","version":1,"properties":{"frames":1,"fps":5}},{"file":"sprite9.png","version":1,"properties":{"frames":1,"fps":5}},{"file":"wall.png","version":4,"properties":{"frames":1,"fps":5}}],"assets":[],"maps":{}};
 var graphics = "M1";
 
-</script><script type="text/javascript">var orientation = 'any' ;
+</script><script type="text/javascript">var orientation = 'landscape' ;
 var aspect = 'free' ;
 window.skip_service_worker = true;
 window.exported_project = true;
@@ -75,14 +75,15 @@ end
 
 draw = function()
   screen.fillRect(0,0,screen.width,screen.height,"rgb(0,0,92)")
-
+  screen.drawSprite("cavern",0, 0, screen.width)
+  
   for i=-6 to 6 by 1
-    screen.drawSprite("wall",i*40-position%40,-80,40)
+    screen.drawSprite("sprite",i*40-position%40,-80,40)
   end
 
   screen.drawSprite("hero",-80,-50+hero_y,20)
   for i=0 to blades.length-1
-    screen.drawSprite("blade",blades[i]-position-80,-50,20)
+    screen.drawSprite("estalagmita",blades[i]-position-80,-50,20)
   end
 
   screen.drawText(score,160,80,25,"#FFF")
