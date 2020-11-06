@@ -86,12 +86,12 @@ draw = function()
     screen.drawSprite("estalagmita",blades[i]-position-80,-50,20)
   end
 
-  screen.drawText(score,160,80,25,"#FFF")
+  screen.drawText(score,100,80,25,"#FFF")
   if gameover then
     screen.fillRect(0,0,screen.width,screen.height,"rgba(255,0,0,.5)")
-    screen.drawText("GAME OVER",0,0,60,"#FFF")
+    screen.drawText("GAME OVER",0,0,40,"#FFF")
   elsif not running then
-    screen.drawText(" READY?",0,40,50,"#FFF")
+    screen.drawText(" READY?",0,40,30,"#FFF")
     screen.drawText("START: Touch screen or press ENTER",0,0,10,"#FFF")
     screen.drawText("JUMP: Touch screen or press UP",0,-15,10,"#FFF")
   end
