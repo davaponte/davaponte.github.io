@@ -16,11 +16,11 @@
 #canvaswrapper {
   text-align: center ;
 }
-</style><style>@font-face { font-family: "BitCell" ; src: url("fonts/BitCell.ttf") format("truetype"); }</style><script>window.fonts = ["BitCell"]</script></head><body class="noselect custom-cursor" oncontextmenu="return false;"><div id="canvaswrapper"></div><script type="text/javascript">var resources = {"images":[{"file":"bullet.png","version":1,"properties":{"frames":1,"fps":5}},{"file":"icon.png","version":34,"properties":{"frames":1,"fps":5}},{"file":"laser.png","version":14,"properties":{"frames":1,"fps":5}},{"file":"left.png","version":14,"properties":{"frames":1,"fps":5}},{"file":"right.png","version":11,"properties":{"frames":1,"fps":5}},{"file":"shield.png","version":15,"properties":{"frames":1,"fps":5}},{"file":"space.png","version":6,"properties":{"frames":1,"fps":5}}],"assets":[],"maps":{"controls":"{\"width\":24,\"height\":15,\"block_width\":16,\"block_height\":16,\"sprites\":[0,\"left\",\"right\",\"space\"],\"data\":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}"}};
+</style><style>@font-face { font-family: "BitCell" ; src: url("fonts/BitCell.ttf") format("truetype"); }</style><script>window.fonts = ["BitCell"]</script></head><body class="noselect custom-cursor" oncontextmenu="return false;"><div id="canvaswrapper"></div><script type="text/javascript">var resources = {"images":[{"file":"bullet.png","version":1,"properties":{"frames":1,"fps":5}},{"file":"fire.png","version":5,"properties":{"frames":1,"fps":5}},{"file":"icon.png","version":185,"properties":{"frames":1,"fps":5}},{"file":"icono.png","version":3,"properties":{"frames":1,"fps":5}},{"file":"laser.png","version":14,"properties":{"frames":1,"fps":5}},{"file":"left.png","version":18,"properties":{"frames":1,"fps":5}},{"file":"oldfire.png","version":1,"properties":{"frames":1,"fps":5}},{"file":"oldleft.png","version":2,"properties":{"frames":1,"fps":5}},{"file":"oldright.png","version":2,"properties":{"frames":1,"fps":5}},{"file":"right.png","version":15,"properties":{"frames":1,"fps":5}},{"file":"shield.png","version":15,"properties":{"frames":1,"fps":5}}],"assets":[],"maps":{"controls":"{\"width\":16,\"height\":10,\"block_width\":16,\"block_height\":16,\"sprites\":[0,\"oldleft\",\"oldright\",\"oldspace\"],\"data\":[0,0,1,1,0,0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}"}};
 var graphics = "M1";
 
 </script><script type="text/javascript">var orientation = 'landscape' ;
-var aspect = '2x1' ;
+var aspect = '4x3' ;
 window.skip_service_worker = true;
 window.exported_project = true;
 </script><script src="microengine.js"></script></body><script id="code" type="text/x-microscript">
@@ -45,27 +45,6 @@ end
 
 
 
-
-getInput = function(key)
-  return isKeyboardInput(key)
-    or isTouchInput(key)
-end
-
-isKeyboardInput = function(key)
-  return keyboard[key]
-end
-
-isTouchInput = function(key)
-  return touch.touching and controls.isAt(toLower(key), touch.x, touch.y)
-end
-
-
-keybindings = object
-  left = "LEFT"
-  right = "RIGHT"
-  fire = "SPACE"
-end
-
 init = function()
   level_colors = ["rgb(0,0,92)", 
     "rgb(92,0,92)", 
@@ -76,40 +55,43 @@ init = function()
   score = 0
   border = 2
   x = 0
-  y = -screen.height / 2 + border + sprites["laser"].height
+  //y = -screen.height / 2 + border + sprites["laser"].height
+  y = -85
   bullets = []
 
   shields = []
-  local shield = new Shields(-100, -50)
+  local shield = new Shields(-80, -50)
   shields.push(shield)
-  local shield = new Shields(-35, -50)
+  local shield = new Shields(-27, -50)
   shields.push(shield)
-  local shield = new Shields(35, -50)
+  local shield = new Shields(27, -50)
   shields.push(shield)
-  local shield = new Shields(100, -50)
+  local shield = new Shields(80, -50)
   shields.push(shield)
   
-  controls = new Map(maps.controls)
-  print(controls)
+  // controls = new Map(maps.controls)
+  TouchButtons = new Buttons
 
   starttime = system.time()
 end
 
 update = function()
-  local LeftPressed = getInput(keybindings.left)
-  local RightPressed = getInput(keybindings.right)
-  local FirePressed = getInput(keybindings.fire)
+  // local LeftPressed = getInput(keybindings.left)
+  // local RightPressed = getInput(keybindings.right)
+  // local FirePressed = getInput(keybindings.fire)
 
-  if LeftPressed then 
+  TouchButtons.GetInputs()
+
+  if keyboard.LEFT or TouchButtons.LeftPressed then 
     x = x - 2
     x = max(x, -screen.width / 2 + sprites["laser"].width + border)
   end
-  if RightPressed then 
+  if keyboard.RIGHT or TouchButtons.RightPressed then 
     x = x + 2 
     x = min(x, screen.width / 2 - sprites["laser"].width - border)
   end
   
-  if FirePressed then
+  if keyboard.UP or keyboard.SPACE or TouchButtons.FirePressed then
     stoptime = system.time()
     if (stoptime - starttime >= 250) then
       starttime = system.time()
@@ -124,7 +106,8 @@ draw = function()
   screen.fillRect(0,0,screen.width,screen.height,"rgb(192, 192, 192)")
   screen.fillRoundRect(0, 0,screen.width-border,screen.height-border,5,level_colors[level])
   
-  screen.drawText(score,150,86,20,"#FFF")
+  screen.drawText('v:0.047-alpha © Dr. Aponte, Nov 2020', -75, 95, 6, "rgb(128, 128, 128)")
+  screen.drawText(score,75,86,20,"#FFF")
 
   for s in shields
     screen.drawSprite(s.name, s.x, s.y, 40)
@@ -132,7 +115,9 @@ draw = function()
   
   screen.drawSprite("laser", x, y, 20)
   
-  controls.draw()
+  // controls.draw()
+  TouchButtons.DrawButtons()
+  // screen.drawText(TouchButtons.Touches, -75, 80, 15, "rgb(192, 192, 192)")
 
   for b in bullets
     b.move()
@@ -155,80 +140,6 @@ draw = function()
 
 end
 
-Map = class
-  constructor = function(mapFile)
-    this.mapFile = mapFile
-    this.x = 0
-    this.y = 0
-    this.width = mapFile.width
-    this.blockWidth = mapFile.block_width
-    this.height = mapFile.height
-    this.blockHeight = mapFile.block_height
-  end
-  
-  draw = function()
-    screen.drawMap(this.mapFile,this.x, this.y, this.width* this.blockWidth, this.height*this.blockHeight)
-  end
-  
-  isAt = function(sprite, x, y)
-    local indexX = floor((x + (this.width * this.blockWidth)/2) / this.blockWidth)
-    local indexY = floor((y + (this.height * this.blockHeight)/2) / this.blockHeight)
-
-    local name = this.mapFile.get(indexX, indexY)
-    local colonIndex = name.indexOf(":")
-
-    if colonIndex > 0 then
-      name = name.substring(0, colonIndex)
-    end
-
-    return  (name == sprite) 
-  end
-  
-  get = function(x, y)
-    local coords = getMapCoords(x, y)
-
-    local name = this.mapFile.get(coords.x, coords.y)
-    local colonIndex = name.indexOf(":")
-
-    if colonIndex > 0 then
-      name = name.substring(0, colonIndex)
-    end
-
-    return name
-  end
-  
-  getMapCoords = function(x, y)
-    
-    local indexX = floor((x + (this.width * this.blockWidth)/2) / this.blockWidth)
-    local indexY = floor((y + (this.height * this.blockHeight)/2) / this.blockHeight)
-    
-    return new Point(indexX, indexY)
-  end
-  
-  replace = function(x, y, spriteName)
-    local coords = getMapCoords(x, y)
-    
-    this.mapFile.set(coords.x, coords.y, spriteName)
-  end
-  
-  clearAt = function(x, y)
-    replace(x, y, "")
-  end
-  
-  count = function(spriteName)
-    local count = 0
-    for x = 0 to this.width
-      for y = 0 to this.height
-        if this.mapFile.get(x, y) == spriteName then
-          count += 1
-        end
-      end
-    end
-    
-    return count
-  end
-end
-
 Shields = class
   constructor = function(x, y, name="shield")
     this.x = x
@@ -245,81 +156,101 @@ end
 
 
 
-toLower = function(text)
-  letters = object
-    A = "a"
-    B = "b"
-    C = "c"
-    D = "d"
-    E = "e"
-    F = "f"
-    G = "g"
-    H = "h"
-    I = "i"
-    J = "j"
-    K = "k"
-    L = "l"
-    M = "m"
-    N = "n"
-    O = "o"
-    P = "p"
-    Q = "q"
-    R = "r"
-    S = "s"
-    T = "t"
-    U = "u"
-    V = "v"
-    W = "w"
-    X = "x"
-    Y = "y"
-    Z = "z"
+Buttons = class
+  constructor = function()
   end
   
-  return changeChars(text, letters)
-end
-
-toUpper = function(text)
-  letters = object
-    a = "A"
-    b = "B"
-    c = "C"
-    d = "D"
-    e = "E"
-    f = "F"
-    g = "G"
-    h = "H"
-    i = "I"
-    j = "J"
-    k = "K"
-    l = "L"
-    m = "M"
-    n = "N"
-    o = "O"
-    p = "P"
-    q = "Q"
-    r = "R"
-    s = "S"
-    t = "T"
-    u = "U"
-    v = "V"
-    w = "W"
-    x = "X"
-    y = "Y"
-    z = "Z"
+  Recalc = function()
+    Width = screen.width / 2
+    SpriteWidth = 30
+    SpriteHeight = 30
+    XPos = Width - SpriteWidth / 2
+    YPosArrow = -20
+    YPosFire = 40
   end
   
-  return changeChars(text, letters)
-end
-
-changeChars = function(text, charPairs)
-  local lowerText = ""
-
-  for i = 0 to text.length-1
-    local l = text[i]
-    lowerText += if charPairs[l] then charPairs[l] else l end
-  end
+  LeftPressed = 0
+  RightPressed = 0
+  FirePressed = 0
   
-  return lowerText
+  DrawButtons = function()
+    Recalc()
+    screen.setAlpha(0.75)
+    screen.drawSprite("left", -XPos, YPosArrow, SpriteWidth)
+    screen.drawSprite("right", XPos, YPosArrow, SpriteWidth)
+    screen.drawSprite("fire", -XPos, YPosFire, SpriteWidth)
+    screen.drawSprite("fire", XPos, YPosFire, SpriteWidth)
+    // GetInputs()
+    // screen.drawText(Touches, -0, 10, 15, "#FFF")
+    screen.setAlpha(1)
+  end
+
+  Touches = 0
+
+  GetInputs = function()
+    
+    LeftPressed = 0
+    RightPressed = 0
+    FirePressed = 0
+    if not touch.touching then
+      return
+    end    
+    Touches = 0
+
+    for Touch in touch.touches
+      LeftPressed = LeftPressed or (abs(Touch.x + XPos) <= SpriteWidth / 2) and (abs(Touch.y - YPosArrow) <= SpriteHeight / 2)
+      RightPressed = RightPressed or (abs(Touch.x - XPos) <= SpriteWidth / 2) and (abs(Touch.y - YPosArrow) <= SpriteHeight / 2)
+      FirePressed = FirePressed or ((abs(Touch.x + XPos) <= SpriteWidth / 2) and (abs(Touch.y - YPosFire) <= SpriteHeight / 2) or (abs(Touch.x - XPos) <= SpriteWidth / 2) and (abs(Touch.y - YPosFire) <= SpriteHeight / 2))
+      Touches += 1
+    end
+    // LeftPressed = (abs(touch.x + XPos) <= SpriteWidth / 2) and (abs(touch.y - YPosArrow) <= SpriteHeight / 2)
+    // RightPressed = (abs(touch.x - XPos) <= SpriteWidth / 2) and (abs(touch.y - YPosArrow) <= SpriteHeight / 2)
+    // FirePressed = (abs(touch.x + XPos) <= SpriteWidth / 2) and (abs(touch.y - YPosFire) <= SpriteHeight / 2) or (abs(touch.x - XPos) <= SpriteWidth / 2) and (abs(touch.y - YPosFire) <= SpriteHeight / 2)
+  end
+
+  IsLeftPressed = function()
+    if touch.touching or mouse.pressed then
+      if (abs(touch.x + XPos) <= SpriteWidth / 2) and
+          (abs(touch.y - YPosArrow) <= SpriteHeight / 2) then
+        return 1
+      else
+        return 0
+      end
+    else
+      return 0
+    end
+  end
+
+  IsRightPressed = function()
+    if touch.touching or mouse.pressed then
+      if (abs(touch.x - XPos) <= SpriteWidth / 2) and
+          (abs(touch.y - YPosArrow) <= SpriteHeight / 2) then
+        return 1
+      else
+        return 0
+      end
+    else
+      return 0
+    end
+  end
+
+  IsFirePressed = function()
+    if touch.touching or mouse.pressed then
+      if (abs(touch.x + XPos) <= SpriteWidth / 2) and (abs(touch.y - YPosFire) <= SpriteHeight / 2) or
+          (abs(touch.x - XPos) <= SpriteWidth / 2) and (abs(touch.y - YPosFire) <= SpriteHeight / 2)then
+        return 1
+      else
+        return 0
+      end
+    else
+      return 0
+    end
+  end
+
 end
+
+
+
+
 
 </script></html>
