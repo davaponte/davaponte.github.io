@@ -57,7 +57,7 @@ update = function()
     hero_y = max(0, hero_y + hero_vy)
     if hero_y == 0 then
       State = RUNNING
-      sprites["herojump"].current_frame = 0
+      sprites["herojump"].setFrame(0)
     end
 
     for i=0 to blades.length-1
